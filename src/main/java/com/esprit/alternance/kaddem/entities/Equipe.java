@@ -1,9 +1,15 @@
 package com.esprit.alternance.kaddem.entities;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
+
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Equipe implements Serializable
 {
     @Id
@@ -14,4 +20,10 @@ public class Equipe implements Serializable
     private String nameEquipe;
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
+
+    //relations
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Etudiant> etudiants;
+    @OneToOne
+    private DetailEquipe detailEquipe;
 }

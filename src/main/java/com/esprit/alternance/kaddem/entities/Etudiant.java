@@ -1,9 +1,16 @@
 package com.esprit.alternance.kaddem.entities;
 
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "Etudiant")
 public class Etudiant implements Serializable {
     @Id
@@ -14,5 +21,16 @@ public class Etudiant implements Serializable {
     private String nomE;
     @Enumerated(EnumType.STRING)
     private Option op;
-// Constructeur et accesseurs (getters) et mutateurs (setters)
+
+
+    // relations
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "etudiant")
+    private Set<Contrat> contrats;
+
+    @ManyToOne
+    private Department department;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "etudiants")
+    private Set<Equipe> equipes;
+
 }

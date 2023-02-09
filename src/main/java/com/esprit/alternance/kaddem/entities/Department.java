@@ -2,7 +2,10 @@ package com.esprit.alternance.kaddem.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
+
 @Entity
+@Table(name = "Department")
 public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,6 +13,8 @@ public class Department implements Serializable {
     private Long idDepartment;
 
     private String nameDepartment;
-
+    //relations
+    @OneToMany(mappedBy = "department")
+    private Set<Etudiant> etudiants;
 
 }
