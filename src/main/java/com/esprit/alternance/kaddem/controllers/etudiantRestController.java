@@ -1,19 +1,13 @@
 package com.esprit.alternance.kaddem.controllers;
 
-import com.esprit.alternance.kaddem.Services.EtudiantService;
-import com.esprit.alternance.kaddem.entities.Etudiant;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
 //@NoArgsConstructor
 @RequestMapping("/etudiant")
-public class EtudiantRestController {
+public class etudiantRestController {
 /*
     @Autowired
     EtudiantService etudiantService;

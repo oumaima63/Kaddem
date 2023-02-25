@@ -37,7 +37,8 @@ public class ServiceEquipeImpl implements EquipeService {
     }
 
     @Override
-    public void deleteEquipe(Equipe equipe) {
-        equipeRepository.delete(equipe);
+    public  void deleteEquipe(Integer idEquipe){
+        Equipe e=retrieveEquipe(idEquipe);
+        equipeRepository.delete(e);
     }
 }

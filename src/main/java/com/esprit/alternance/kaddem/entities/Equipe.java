@@ -15,7 +15,7 @@ public class Equipe implements Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEquipe", nullable = false)
-    private Long idEquipe;
+    private Integer idEquipe;
 
     private String nameEquipe;
     @Enumerated(EnumType.STRING)
