@@ -1,5 +1,7 @@
 package com.esprit.alternance.kaddem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,5 +17,6 @@ public class DetailEquipe implements Serializable {
     private String thematique;
     //relations
     @OneToOne(mappedBy = "detailEquipe")
+    @JsonIgnore
     private Equipe equipe;
 }

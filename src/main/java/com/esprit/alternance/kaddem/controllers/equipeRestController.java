@@ -13,7 +13,7 @@ import java.util.List;
 public class equipeRestController {
     EquipeService equipeService;
 
-    // http://localhost:8089/equipe/retrieve-all-equipes
+    // http://localhost:8089/kaddem/equipe/retrieve-all-equipes
     @GetMapping("/retrieve-all-equipes")
     public List<Equipe> getEquipes() {
         List<Equipe> listEquipes = equipeService.retrieveAllEquipes();
@@ -33,7 +33,7 @@ public class equipeRestController {
         }
         // http://localhost:8089/kaddem/equipe/remove-equipe/1
         @DeleteMapping("/remove-equipe/{equipe-id}")
-        public void removeOperateur(@PathVariable("equipe-id") Integer equipeId) {
+        public void removeEquipe(@PathVariable("equipe-id") Integer equipeId) {
             equipeService.deleteEquipe(equipeId);
         }
 

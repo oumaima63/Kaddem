@@ -3,14 +3,12 @@ package com.esprit.alternance.kaddem.Services;
 import com.esprit.alternance.kaddem.entities.Equipe;
 import com.esprit.alternance.kaddem.repositories.EquipeRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
-@NoArgsConstructor
 public class ServiceEquipeImpl implements EquipeService {
 
     EquipeRepository equipeRepository;
@@ -37,8 +35,7 @@ public class ServiceEquipeImpl implements EquipeService {
     }
 
     @Override
-    public  void deleteEquipe(Integer idEquipe){
-        Equipe e=retrieveEquipe(idEquipe);
-        equipeRepository.delete(e);
+    public void deleteEquipe(Integer equipeId) {
+        equipeRepository.deleteById(equipeId);
     }
 }
