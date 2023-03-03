@@ -8,10 +8,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-@Setter
+/*@Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor*/
 @Entity
 public class Universite implements Serializable {
     @Id

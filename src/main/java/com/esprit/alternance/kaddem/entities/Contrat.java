@@ -10,10 +10,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor
+/*@AllArgsConstructor
 @NoArgsConstructor
 @Setter
-@Getter
+@Getter*/
 public class Contrat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

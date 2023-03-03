@@ -12,8 +12,8 @@ import java.util.Set;
 
 @Entity
 @AllArgsConstructor
-@Setter
-@Getter
+/*@Setter
+@Getter*/
 @NoArgsConstructor
 @Table(name = "Etudiant")
 public class Etudiant implements Serializable {

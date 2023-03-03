@@ -8,10 +8,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-@AllArgsConstructor
+/*@AllArgsConstructor
 @NoArgsConstructor
 @Setter
-@Getter
+@Getter*/
 @Entity
 @Table(name = "Department")
 public class Department implements Serializable {
