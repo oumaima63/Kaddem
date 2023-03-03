@@ -2,7 +2,9 @@ package com.esprit.alternance.kaddem.entities;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.util.Set;
 
 @Entity
 @AllArgsConstructor
+@Setter
+@Getter
 @NoArgsConstructor
 @Table(name = "Etudiant")
 public class Etudiant implements Serializable {
