@@ -15,8 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Equipe implements Serializable
-{
+public class Equipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEquipe", nullable = false)
@@ -30,6 +29,5 @@ public class Equipe implements Serializable
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Etudiant> etudiants;
     @OneToOne(cascade = CascadeType.ALL)
-
     private DetailEquipe detailEquipe;
 }
