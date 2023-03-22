@@ -1,41 +1,82 @@
 package com.esprit.alternance.kaddem.Services;
 
+import com.esprit.alternance.kaddem.entities.Contrat;
 import com.esprit.alternance.kaddem.entities.Equipe;
+import com.esprit.alternance.kaddem.entities.Etudiant;
+import com.esprit.alternance.kaddem.entities.Niveau;
 import com.esprit.alternance.kaddem.repositories.EquipeRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @Service
+@Slf4j
 public class ServiceEquipeImpl implements EquipeService {
 
     EquipeRepository equipeRepository;
 
-    @Override
-    public List<Equipe> retrieveAllEquipes() {
-        return equipeRepository.findAll();
+
+    public List<Equipe> retrieveAllEquipes(){
+        return  (List<Equipe>) equipeRepository.findAll();
+    }
+    public Equipe addEquipe(Equipe e){
+        return (equipeRepository.save(e));
     }
 
-    @Override
-    public Equipe addEquipe(Equipe e) {
-        return equipeRepository.save(e);
+    public  void deleteEquipe(Integer idEquipe){
+        Equipe e=retrieveEquipe(idEquipe);
+        equipeRepository.delete(e);
     }
 
-    @Override
-
-    public Equipe updateEquipe(Equipe equipe) {
-        return equipeRepository.save(equipe);
+    public Equipe retrieveEquipe(Integer equipeId){
+        return equipeRepository.findById(equipeId).get();
     }
 
-    @Override
-    public Equipe retrieveEquipe(Integer idEquipe) {
-        return equipeRepository.findById(idEquipe).get();
+    public Equipe updateEquipe(Equipe e){
+        return (	equipeRepository.save(e));
     }
 
-    @Override
-    public void deleteEquipe(Integer equipeId) {
-        equipeRepository.deleteById(equipeId);
+    public void evoluerEquipes(){
+        List<Equipe> equipes = (List<Equipe>) equipeRepository.findAll();
+        for (Equipe equipe : equipes) {
+            if ((equipe.getNiveau().equals(Niveau.JUNIOR)) || (equipe.getNiveau().equals(Niveau.SENIOR))) {
+                List<Etudiant> etudiants = (List<Etudiant>) equipe.getEtudiants();
+                Integer nbEtudiantsAvecContratsActifs=0;
+                for (Etudiant etudiant : etudiants) {
+                    Set<Contrat> contrats = etudiant.getContrats();
+                    //Set<Contrat> contratsActifs=null;
+                    for (Contrat contrat : contrats) {
+                        Date dateSysteme = new Date();
+                        long difference_In_Time = dateSysteme.getTime() - contrat.getDateFin().getTime();
+                        long difference_In_Years = (difference_In_Time / (1000l * 60 * 60 * 24 * 365));
+                        if ((contrat.getArchive() == false) && (difference_In_Years > 1)) {
+                            //	contratsActifs.add(contrat);
+                            nbEtudiantsAvecContratsActifs++;
+                            break;
+                        }
+                        if (nbEtudiantsAvecContratsActifs >= 3) break;
+                    }
+                }
+                if (nbEtudiantsAvecContratsActifs >= 3){
+                    if (equipe.getNiveau().equals(Niveau.JUNIOR)){
+                        equipe.setNiveau(Niveau.SENIOR);
+                        equipeRepository.save(equipe);
+                        break;
+                    }
+                    if (equipe.getNiveau().equals(Niveau.SENIOR)){
+                        equipe.setNiveau(Niveau.EXPERT);
+                        equipeRepository.save(equipe);
+                        break;
+                    }
+                }
+            }
+
+        }
+
     }
 }
