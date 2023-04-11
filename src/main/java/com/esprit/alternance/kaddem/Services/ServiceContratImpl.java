@@ -17,9 +17,8 @@ import java.util.Set;
 
 @Service
 @Slf4j
-@AllArgsConstructor
 public class ServiceContratImpl implements ContratService{
-
+    @Autowired
     ContratRepository contratRepository;
     @Autowired
     EtudiantRepository etudiantRepository;

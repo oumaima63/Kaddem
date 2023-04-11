@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ContratRepository extends JpaRepository<Contrat,Integer> {
 
-    @Query("SELECT count(c) FROM Contrat c where ((c.archive=true) and  ((c.dateDebutContrat BETWEEN :startDate AND :endDate)) or(c.dateFinContrat BETWEEN :startDate AND :endDate))")
+    @Query("SELECT count(c) FROM Contrat c where ((c.archive=true) and  ((c.dateDebut BETWEEN :startDate AND :endDate)) or(c.dateFin BETWEEN :startDate AND :endDate))")
     public Integer getnbContratsValides(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     public List<Contrat> findAll();
